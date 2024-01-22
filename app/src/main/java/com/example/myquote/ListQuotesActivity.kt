@@ -52,6 +52,7 @@ class ListQuotesActivity : AppCompatActivity() {
                 val result = String(responseBody!!)
                 Log.d(TAG, result)
                 try {
+                    //Pda dokumentasi Bernilai [] krna itu makek JSONArray
                     val jsonArray = JSONArray(result)
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(i)

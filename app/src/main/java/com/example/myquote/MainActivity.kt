@@ -13,7 +13,7 @@ import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         private val TAG = MainActivity::class.java.simpleName
     }
 
@@ -31,22 +31,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRandomQuote(){
+    private fun getRandomQuote() {
         binding.progressBar.visibility = View.VISIBLE
+
+        //Koneksi ke server secara asynchronous
         val client = AsyncHttpClient()
         val url = "https://quote-api.dicoding.dev/random"
-        client.get(url, object : AsyncHttpResponseHandler(){
+
+        //READ/Ambil data
+        client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
-                statusCode: Int,
-                headers: Array<out Header>?,
-                responseBody: ByteArray?
+                statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?
             ) {
                 //Jika Koneksi Berhasil
                 binding.progressBar.visibility = View.INVISIBLE
 
                 val result = String(responseBody!!)
+                //Kegunaan Log = mengecek data tampil/tdk. Misal data di logcat ada tpi list ga tampil, kmngkinan salah di pasing JSON
                 Log.d(TAG, result)
                 try {
+
+                    //Krna pda format JSON API dimulai {} = Bertipe JSONObject
+                    //Krna itu Memanggil class sperti dibwah
                     val responseObject = JSONObject(result)
 
                     val quote = responseObject.getString("en")
@@ -54,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                     binding.tvQuote.text = quote
                     binding.tvAuthor.text = author
-                } catch (e: Exception){
+                } catch (e: Exception) {
                     Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }
@@ -69,7 +75,8 @@ class MainActivity : AppCompatActivity() {
                 //Jika Koneksi Gagal
                 binding.progressBar.visibility = View.VISIBLE
 
-                val errorMessage = when(statusCode){
+                //LoopJ
+                val errorMessage = when (statusCode) {
                     401 -> "$statusCode : Bad Request"
                     403 -> "$statusCode : Forbidden"
                     404 -> "$statusCode : Not Found"
