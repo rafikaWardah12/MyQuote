@@ -6,4 +6,4 @@ MyQuotes adalah project sederhana yang menampilkan list data quotes. Bahasa yang
 3. Terdapat 2 object yang dihasilkan oleh AsyncHttpResponseHandler yaitu onSuccess(koneksi berhasil) dan onFailure(koneksi gagal).
 4. Menampilkan errorMessage berdasarkan statusCode, seperti 401 yang merupakan bad request
 5. Parsing JSON dari <a href="https://quote-api.dicoding.dev/random" target="_blank">Quote Api Dicoding</a>
-6. Format JSON pada API apabila {} = bertipe JSONObject dan [] = bertipe JSONArray
+6. Format JSON pada API apabila { } = bertipe JSONObject dan [ ] = bertipe JSONArray
