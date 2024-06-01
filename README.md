@@ -9,3 +9,6 @@ MyQuotes adalah project sederhana yang menampilkan list data quotes. Bahasa yang
 6. Format JSON pada API apabila { } = bertipe JSONObject dan [ ] = bertipe JSONArray
 
 ## Preview
+<div style="display:flex;">
+    <img alt="Preview" title="Preview" width="" src="app/screenshot/img1.png" />
+</div>
